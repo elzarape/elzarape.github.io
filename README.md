@@ -1,2 +1,1 @@
-# el-zarape documentacion
-daniel ojeda
+# el-zarape documentation
