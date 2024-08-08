@@ -19,19 +19,19 @@ let indexFoodSelected;
 
 function loadData() {
     return Promise.all([
-        fetch("http://127.0.0.1:5500/admin/data/foods.json")
+        fetch("https://elzarape.github.io/admin/data/foods.json")
             .then((response) => response.json())
             .then((data) => {
                 foods = data;
                 console.log("Alimentos cargadas:", foods);
             }),
-        fetch("http://127.0.0.1:5500/admin/data/categories.json")
+        fetch("https://elzarape.github.io/admin/data/categories.json")
             .then((response) => response.json())
             .then((data) => {
                 objCategories = data;
                 console.log("Categorías cargadas:", objCategories);
             }),
-        fetch("http://127.0.0.1:5500/admin/data/status.json")
+        fetch("https://elzarape.github.io/admin/data/status.json")
             .then((response) => response.json())
             .then((data) => {
                 aStatus = data;
