@@ -63,17 +63,17 @@ document.getElementById("btn-agree").addEventListener("click", actionForm);
 
 function loadData() {
     return Promise.all([
-        fetch("http://127.0.0.1:5500/admin/data/branch-offices.json")
+        fetch("https://elzarape.github.io/admin/data/branch-offices.json")
             .then((response) => response.json())
             .then((data) => {
                 branches = data;
             }),
-        fetch("http://127.0.0.1:5500/admin/data/states.json")
+        fetch("https://elzarape.github.io/admin/data/states.json")
             .then((response) => response.json())
             .then((data) => {
                 states = data;
             }),
-        fetch("http://127.0.0.1:5500/admin/data/status.json")
+        fetch("https://elzarape.github.io/admin/data/status.json")
             .then((response) => response.json())
             .then((data) => {
                 aStatus = data;
