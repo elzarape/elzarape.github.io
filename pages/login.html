@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión - El Zarape</title>
+    <!-- Bootstrap CSS -->
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/css/login.css" rel="stylesheet">
+    <link href="../assets/css/index.css" rel="stylesheet">
+    <link href="../assets/css/index-admin.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <script src="https://kit.fontawesome.com/7348c59eb0.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="min-vh-100">
+        <header>
+            <div class="container container-header d-flex justify-content-around align-items-center">
+                <img id="logo" class="header__img" src="../assets/img/restaurant/logo-el-zarape.png" alt="El Zarape Logo">
+                <nav class="container-nav text-center">
+                    <a class="nav-element text-decoration-none" href="../inicio.html"><i
+                            class="fa-solid fa-house"></i></a>
+                </nav>
+            </div>
+        </header>
+        <div class="container-main-login container-login">
+            <div class="left">
+                <img src="../assets/img/restaurant/logo-el-zarape.png" alt="El Zarape Logo">
+            </div>
+            <div class="right d-flex flex-column justify-content-center">
+                <a class="link-home" class="text-decoration-none" href="../inicio.html"><i
+                    class="fa-solid fa-house"></i></a>
+                <div class="container d-flex flex-column">
+                    <h1 class="title-login title">Iniciar Sesión</h1>
+                    <form id="form-login">
+                        <div class="form-group mb-3">
+                            <label for="username" class="col-form-label">Usuario</label>
+                            <input type="text" class="form-control" id="username" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="password" class="col-form-label">Contraseña</label>
+                            <input type="password" class="form-control" id="password" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <p id="msg-validate" class="bg-danger validity-alert"></p>
+                            <button type="button" id ="btn-login" class="btn btn-login">Iniciar Sesión</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="footer-content">
+            <p class="footer-title">Restaurante</p>
+            <p class="highlight">El Zarape</p>
+            <nav class="d-flex flex-wrap footer-nav footer-nav-top">
+                <a href="#">Sucursal</a>
+                <a href="#">Sobre Nosotros</a>
+                <a href="#">Descargar App</a>
+                <a href="login.html">Administrador</a>
+            </nav>
+            <nav class="footer-nav footer-nav-bottom">
+                <a href="#">Información legal</a>
+                <span class="separator"></span>
+                <a href="#">Política de Privacidad</a>
+            </nav>
+            <p class="footer-copyright">Copyright ©2024 El Zarape. Diseñado por Deep Code</p>
+        </div>
+    </footer>
+    <!-- Bootstrap JS -->
+    <script src="/admin/assets/main.js"> </script>
+    <script src="../assets/js/login.js"></script>
+    <script src="../assets/js/bootstrap.min.js"></script>
+</body>
+
+</html>

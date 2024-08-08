@@ -1,0 +1,261 @@
+/*Varaibles de estilos*/
+:root {
+    --primary-color: #FA4032;
+    --secondary-color: #FA812F;
+    --primary-bg-color: #FEF3E2;
+    --secondary-bg-color: #FAAF08;
+}
+
+
+
+/*Estilos de texto*/
+/*Titulos*/
+.title {
+    color: var(--primary-color);
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.style-text {
+    color: #fff;
+    font-size: 16px;
+}
+
+
+/*Footer general styles*/
+footer {
+    /*min-width: 320px;*/  
+    background-color: black;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+.footer-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.footer-title {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 0px;
+}
+
+.highlight {
+    color: var(--primary-color);
+    font-size: 35px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.footer-nav {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+.footer-nav-top {
+    justify-content: space-around;
+}
+
+.footer-nav-top a {
+    width: 150px !important;
+}
+
+.footer-nav-bottom {
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-nav a {
+    color: #fff;
+    margin: 0 20px;
+    text-decoration: underline;
+    font-size: 16px;
+}
+
+
+
+.footer-nav .separator {
+    display: inline-block;
+    width: 3px;
+    height: 29px;
+    background-color: var(--secondary-bg-color);
+    margin: 0 20px;
+    vertical-align: middle;
+}
+
+.footer-nav-second {
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-nav-second .separator {
+    margin: 0 20px;
+}
+
+.footer-copyright {
+    font-size: 12px;
+    font-weight: bold;
+    margin: 0 20px;
+}
+
+.m-header {
+    z-index: 1;
+    background-color: #fff;
+    height: 140px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    box-shadow: 0 -1px 5px black;
+}
+
+.m-header-image {
+    max-width: 125px;
+}
+
+.m-nav-element {
+    margin: 0 20px;
+    color: #000;
+    text-decoration: none;
+}
+
+.m-body {
+    background-color: var(--primary-bg-color);
+    min-height: 100vh;
+}
+
+.m-content {
+    padding-top: 140px;
+}
+
+.active {
+    background-color: var(--secondary-color);
+    padding: 6px 14px;
+    border-radius: 6px;
+    color: #fff;
+}
+
+
+/*Style principal button*/
+.btn-principal {
+    width: 130px;
+    margin: 0 20px;
+    background-color: var(--primary-color);
+    border: 0;
+    color: #fff;
+}
+
+
+.btn-principal:hover {
+    color: var(--primary-color) ;
+    background-color: #fff;
+    outline: 2px solid var(--primary-color);
+    transition: background 0.4s;
+}
+
+
+
+.btn-principal:active {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+/*End styleprincipal button*/
+
+.ctr-m-nav-element {
+    display: none;
+    width: 32px;
+}
+
+.container-menu {
+    position: fixed;
+    height: 100vh;
+    width: 100%;
+    top: -100%;
+    transition: all .5s;
+}
+
+.container-menu ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;   
+}
+
+/*Card style*/
+
+.card-drink {
+    width: 400px;
+    min-width: 250px;
+}
+.drink-data {
+    width: 150px;
+}
+
+.drink-img {
+    width: 150px;
+    height: 150px;
+    background-size: cover;
+}
+
+ /* CSS para posicionar el botón de búsqueda */
+.search-button-container {
+    position: relative;
+    margin-bottom: 1rem; /* Ajusta el espacio según sea necesario */
+}
+.search-button-container .search-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #fff; /* Fondo blanco o el que prefieras */
+    border: 1px solid #ccc; /* Borde opcional */
+    border-radius: 0.25rem; /* Bordes redondeados opcional */
+}
+.search-button-container .search-button i {
+    margin-right: 0.5rem; /* Espacio entre el ícono y el texto */
+}
+
+@media screen and (max-width: 1024px) {
+    .ctr-m-nav-element {
+        display: inline-block;
+        font-size: 30px;
+    }
+
+    .container-menu {
+        text-align: center;
+        background-color: var(--primary-bg-color);
+    }
+
+    .m-nav-element {
+        display: none;
+    }
+
+    .container-menu ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;   
+    }
+
+    .menu-element {
+        text-decoration: none;
+        height: calc(100% / 6);
+        line-height: 40px;
+        width: 100%;
+    }
+
+    
+    .menu-element a {
+        display: block;
+        cursor: pointer;
+        color: #000;
+        text-decoration: none;
+        width: 100%;
+        height: 100%;
+    }
+
+    .menu-element a:hover {
+        background-color: #ff6600;
+    }
+}
