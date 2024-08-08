@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../../../../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../../../../assets/css/index.css">
+    <link rel="stylesheet" href="../../../../../assets/css/index-admin.css">
+    <link rel="stylesheet" href="../../../../../assets/css/modal.css">
+    <script src="https://kit.fontawesome.com/7348c59eb0.js" crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="min-vh-100">
+    <header class="d-flex flex-wrap justify-content-around">
+        <div class="container-logo d-flex align-items-center justify-content-center"><a href="#"><img class="logo"
+                    src="../../../../assets/img/restaurant/logo-el-zarape.png" alt="Logotipo El zarape"></a></div>
+        <div class="container-navigation d-flex ">
+            <ul class="navegation d-flex align-items-center">
+                <li class="navegation__item"><a class="navegation__link" href="#"><i
+                            class="navegation__icon fa-regular fa-user"></i></a></li>
+                </li>
+                <li class="navegation__item"><a class="navegation__link" href="#"><i
+                            class="navegation__icon fa-solid fa-right-from-bracket"></i></a></li>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <main class="content container">
+        <h1 class="content__element title display-2 text-center">Alimentos</h1>
+        <div class="content__element container-button container-fluid d-flex justify-content-center">
+            <button class="button-create style-text" data-bs-target="#modal-create" data-bs-toggle="modal">Crear nuevo
+                registro</button>
+        </div>
+        <div class="content__element container-fluid">
+            <div class="container-table table-responsive">
+                <table class="table table-hover">
+                    <thead class="table-head">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Descripción</th>
+                            <th scope="col">Categoria</th>
+                            <th scope="col">Precio</th>
+                            <th scope="col">Foto</th>
+                            <th scope="col">Estatus</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-bebida">
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </main>
+</div>
+<footer>
+    <div class="footer-content">
+        <p class="footer-title">Restaurante</p>
+        <p class="highlight">El Zarape</p>
+        <nav class="d-flex flex-wrap footer-nav footer-nav-top">
+            <a href="#">Sucursal</a>
+            <a href="#">Sobre Nosotros</a>
+            <a href="#">Descargar App</a>
+        </nav>
+        <nav class="footer-nav footer-nav-bottom">
+            <a href="#">Información legal</a>
+            <span class="separator"></span>
+            <a href="#">Política de Privacidad</a>
+        </nav>
+        <p class="footer-copyright">Copyright ©2024 El Zarape. Diseñado por Deep Code</p>
+    </div>
+</footer>
+
+    <!-- Modal CRUD to manage the components -->
+    <!--Modal to create new register-->
+    <div class="modal fade modal-lg modal-dialog-scrollable" id="modal-create" aria-hidden="true"
+        aria-labelledby="modal-create" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header d-flex justify-content-center">
+                    <h1 class="modal-title fs-5 title" id="exampleModalToggleLabel">Crear nuevo registro</h1>
+                </div>
+                <div class="modal-body">
+                    <form id="form-create-food">
+                        <div class="mb-3">
+                            <label for="name-food" class="col-form-label">Nombre</label>
+                            <input type="text" class="form-control" id="name-food" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="description-food" class="col-for">Descripción</label>
+                            <input type="text" class="form-control" id="description-food" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="category-food">Categoria</label>
+                            <select class="form-select form-select-sm p-2 select-categories" id="category-food"
+                                required></select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="price-food" class="col-form-label">Precio</label>
+                            <input type="number" class="form-control" id="price-food" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="image-food" class="col-form-label">Imagen</label>
+                            <input type="file" class="form-control" id="image-food" accept="image/*" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer d-flex justify-content-evenly flex-wrap-reverse">
+                    <button type="button" class="modal-footer__button btn-cancel" data-bs-dismiss="modal"
+                        aria-label="Close">Cancelar</button>
+                    <button type="button" id="btn-clean-create" class="modal-footer__button btn-clean">Limpiar</button>
+                    <button type="button" id="btn-preview-create"
+                        class="modal-footer__button btn-agree">Registrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--Modal to view preview-->
+    <div class="modal fade modal-lg" id="modal-preview" aria-hidden="true" aria-labelledby="modal-preview"
+        tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header d-flex justify-content-center">
+                    <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Vista previa</h1>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fuid d-flex flex-wrap justify-content-evenly">
+                        <div id="img-preview-create">
+                        </div>
+                        <div id="data-preview-create">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-center flex-column ">
+                    <p>¿Desea realizar la acción?</p>
+                    <div class="footer-buttons">
+                        <button id="btn-create" class="modal-footer__button btn-agree" data-bs-target="#modal-preview"
+                            data-bs-toggle="modal">Sí</button>
+                        <button class="modal-footer__button btn-delete" data-bs-target="#modal-create"
+                            data-bs-toggle="modal">No</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Modal to update register-->
+    <div class="modal fade modal-lg modal-dialog-scrollable" id="modal-update" aria-hidden="true"
+        aria-labelledby="modal-update" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header d-flex justify-content-center">
+                    <h1 class="modal-title fs-5 title" id="exampleModalToggleLabel">Actualizar Registro</h1>
+                </div>
+                <div class="modal-body">
+                    <form id="form-update-food">
+                        <div class="mb-3">
+                            <label for="name-food-update" class="col-form-label">Nombre</label>
+                            <input type="text" class="form-control" id="name-food-update" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="description-food-update" class="col-form-label">Descripción</label>
+                            <input type="text" class="form-control" id="description-food-update" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="category-food-update">Categoria</label>
+                            <select class="form-select form-select-sm p-2 select-categories" id="category-food-update"
+                                required></select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="price-food-update" class="col-form-label">Precio</label>
+                            <input type="number" class="form-control" id="price-food-update" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="image-food-update" class="col-form-label">Imagen</label>
+                            <input type="file" class="form-control" id="image-food-update" accept="image/*">
+                            <p id="p-current-image"></p>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label-update" for="status-food-update">Estatus</label>
+                            <select class="form-select form-select-sm p-2" id="status-food-update" required>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer d-flex justify-content-evenly flex-wrap-reverse">
+                    <button type="button" class="modal-footer__button btn-cancel" data-bs-dismiss="modal"
+                        aria-label="Close">Cancelar</button>
+                    <button type="button" id="btn-preview-delete"
+                        class="modal-footer__button btn-delete">Eliminar</button>
+                    <button type="button" id="btn-clean-update" class="modal-footer__button btn-clean">Limpiar</button>
+                    <button type="button" id="btn-preview-update"
+                        class="modal-footer__button btn-modify">Modificar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--Modal to view preview update-->
+    <div class="modal fade modal-lg" id="modal-preview-update" aria-hidden="true" aria-labelledby="modal-preview"
+        tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header d-flex justify-content-center">
+                    <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Vista previa</h1>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fuid d-flex flex-wrap justify-content-evenly">
+                        <div id="img-preview-update">
+                        </div>
+                        <div id="data-preview-update">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-center flex-column ">
+                    <p>¿Desea realizar la acción?</p>
+                    <div class="footer-buttons">
+                        <button id="btn-update" class="modal-footer__button btn-agree"
+                            data-bs-target="#modal-preview-update" data-bs-toggle="modal">Sí</button>
+                        <button class="modal-footer__button btn-delete" data-bs-target="#modal-update"
+                            data-bs-toggle="modal">No</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!--Modal to view preview delete-->
+    <div class="modal fade modal-lg" id="modal-preview-delete" aria-hidden="true" aria-labelledby="modal-preview"
+        tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header d-flex justify-content-center">
+                    <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Vista previa</h1>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fuid d-flex flex-wrap justify-content-evenly align-items-center gap-4">
+                        <div id="img-preview-delete">
+                        </div>
+                        <div id="data-preview-delete">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-center flex-column ">
+                    <p>¿Desea realizar la acción?</p>
+                    <div class="footer-buttons">
+                        <button id="btn-delete" class="modal-footer__button btn-agree"
+                            data-bs-target="#modal-preview-delete" data-bs-toggle="modal">Sí</button>
+                        <button class="modal-footer__button btn-delete" data-bs-target="#modal-update"
+                            data-bs-toggle="modal">No</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--JS Bootstrap-->
+    <script src="../../../../assets/js/bootstrap.min.js"></script>
+    <script src="../controller/alimentos.js"></script>
+    <!--JS Ajax-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</body>
+
+</html>

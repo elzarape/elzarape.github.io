@@ -1,0 +1,58 @@
+{
+    "bebidas": [
+        {
+            "id": 1,
+            "category": "Jugos"
+        },
+        {
+            "id": 2,
+            "category": "Refrescos"
+        },
+        {
+            "id": 3,
+            "category": "Bebidas calientes"
+        },
+        {
+            "id": 4,
+            "category": "Bebidas frias"
+        },
+        {
+            "id": 5,
+            "category": "Bebidas embriagantes"
+        }
+    ],
+    "alimentos": [
+        {
+            "id": 1,
+            "category": "Entradas (Antojitos)"
+        },
+        {
+            "id": 2,
+            "category": "Sopas y Caldos"
+        },
+        {
+            "id": 3,
+            "category": "Tacos"
+        },
+        {
+            "id": 4,
+            "category": "Platillos Principales"
+        },
+        {
+            "id": 5,
+            "category": "Mariscos"
+        },
+        {
+            "id": 6,
+            "category": "Especialidades Regionales"
+        },
+        {
+            "id": 7,
+            "category": "Ensaladas"
+        },
+        {
+            "id": 8,
+            "category": "Postres"
+        }
+    ]
+}

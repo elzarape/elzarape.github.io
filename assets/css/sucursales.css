@@ -1,0 +1,225 @@
+body {
+   
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+}
+
+header {
+    background-color: #f8f8f8;
+    border-bottom: 1px solid #ddd;
+}
+
+header nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 22px 10px;
+}
+
+header nav a {
+    text-decoration: none;
+    color: #000;
+    margin: 0 10px;
+}
+
+.sesion-button {
+    background-color: #FA4032;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+.inicio-button2 {
+    background-color: #FA812F;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+.inicio {
+    background-color: #d9d9d9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px 0;
+}
+
+.hero-logo img {
+    height: 150px;
+    margin-bottom: 20px;
+}
+
+
+
+
+
+.container {
+    background-color: #FEF3E2;
+    padding: 20px;
+}
+
+
+p{
+   color: #FAAF08;
+   font-weight: bold;
+}
+
+.suc {
+    padding: 0px;
+    background-color: #f0f0f0;
+    text-align: center;
+}
+
+.suc-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 0px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin: 0 auto; 
+    max-width: 50%; 
+}
+
+
+
+/* Estilo para las secciones de detalles */
+.suc-details {
+    width: 300px; /* Ajusta este valor según el tamaño deseado */
+    height: 600px; /* Ajusta este valor según el tamaño deseado */
+    padding: 20px;
+    text-align: center;
+    background-color: white;
+    margin: 70px; /* Espacio entre los elementos */
+    box-sizing: border-box; /* Incluye el relleno en el tamaño total */
+    display: inline-block; /* Para que los elementos se alineen en línea */
+    vertical-align: top; /* Alinea los elementos en la parte superior */
+    border-radius: 8px; /* Bordes redondeados (opcional) */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra (opcional) */
+}
+
+.suc-details h2 {
+    color: #FA4032;
+}
+
+.suc-icons {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+.suc-details h2 {
+    color: #FA4032;
+    position: relative; 
+    margin-bottom: 30px; 
+}
+
+.suc-details h2::after {
+    content: "";
+    display: block;
+    width: 250px; 
+    height: 3px; 
+    background-color: #FAAF08; 
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%); 
+}
+.suc-details ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.suc-details ul li {
+    margin-bottom: 5px;
+}
+
+/*Footer general styles*/
+footer {
+    /*min-width: 320px;*/  
+    background-color: black;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+.footer-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.footer-title {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 0px;
+    color:white
+}
+
+.highlight {
+    color: #FA4032;
+    font-size: 35px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.footer-nav {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+.footer-nav-top {
+    justify-content: space-around;
+}
+
+.footer-nav-top a {
+    width: 150px !important;
+}
+
+.footer-nav-bottom {
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-nav a {
+    color: #fff;
+    margin: 0 20px;
+    text-decoration: underline;
+    font-size: 16px;
+}
+
+
+
+.footer-nav .separator {
+    display: inline-block;
+    width: 3px;
+    height: 29px;
+    background-color: #ff9800;
+    margin: 0 20px;
+    vertical-align: middle;
+}
+
+.footer-nav-second {
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-nav-second .separator {
+    margin: 0 20px;
+}
+
+.footer-copyright {
+    font-size: 12px;
+    font-weight: bold;
+    margin: 0 20px;
+    color:white;
+}

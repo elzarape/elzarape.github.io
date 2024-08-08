@@ -1,0 +1,241 @@
+/*General style button*/
+.modal-footer__button {
+    letter-spacing: 1px;
+    color: #fff;
+    width: 150px;
+    height: 35px;
+    border-radius: 12px;
+    border: none;
+}
+
+.modal-body__button {
+    letter-spacing: 1px;
+    padding: 0 10px;
+    color: #fff;
+    min-height: 35px;
+    border-radius: 12px;
+    border: none;
+}
+
+.btn-agree {
+    background-color: #33A000;
+}
+
+.btn-agree:hover {
+    color: #33A000;
+    background-color: #fff;
+    outline: 2px solid #33A000 !important;
+    transition: background 0.4s;
+}
+
+.btn-agree:active {
+    outline: 2px solid #33A000 !important;
+}
+
+.btn-modify {
+    
+    background-color: #FAAF08;
+}
+
+.btn-modify:hover {
+    color: #FAAF08;
+    background-color: #fff;
+    outline: 2px solid #FAAF08 !important;
+    transition: background 0.4s;
+}
+
+.btn-modify:active {
+    outline: 2px solid #FAAF08 !important;
+}
+
+.btn-clean, .btn-action,.btn-clean:active, .btn-action:active {
+    background-color: #1163dd;
+}
+
+.btn-clean:hover, .btn-action:hover {
+    color: #1163dd;
+    background-color: #fff;
+    outline: 2px solid #1163dd !important;
+    transition: background 0.4s;
+}
+
+.btn-delete {
+    background-color: #df1717;
+}
+
+.btn-delete:hover {
+    color: #df1717;
+    background-color: #fff;
+    outline: 2px solid #df1717 !important;
+    transition: background 0.4s;
+}
+
+.btn-delete:active {
+    outline: 2px solid #df1717 !important;
+}
+
+.btn-cancel, .btn-not-active {
+    
+    background-color: #6c757d;
+}
+
+.btn-cancel:hover, .btn-not-active:hover {
+    color: #6c757d;
+    background-color: #fff;
+    outline: 2px solid #6c757d !important;
+    transition: background 0.4s;
+}
+
+.btn-cancel:active, .btn-not-active:active {
+    outline: 2px solid #6c757d !important;
+}
+
+.footer-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+#combo-foods-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); 
+    gap: 10px;
+}    
+#combo-foods-container label {
+    display: flex;
+    align-items: center;
+}
+
+#combo-foods-container input[type="checkbox"] {
+    margin-right: 10px; 
+}
+
+#combo-drinks-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); 
+    gap: 10px; 
+}
+
+#combo-drinks-container label {
+    display: flex;
+    align-items: center;
+}
+
+#combo-drinks-container input[type="checkbox"] {
+    margin-right: 10px; 
+}
+
+#update-combo-foods-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); 
+    gap: 10px;
+}    
+#update-combo-foods-container label {
+    display: flex;
+    align-items: center;
+}
+
+#update-combo-foods-container input[type="checkbox"] {
+    margin-right: 10px; 
+}
+
+#update-combo-drinks-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); 
+    gap: 10px; 
+}
+
+#update-combo-drinks-container label {
+    display: flex;
+    align-items: center;
+}
+
+#update-combo-drinks-container input[type="checkbox"] {
+    margin-right: 10px; 
+}
+.image-preview {
+    width: 200px;
+    height: 200px;
+    background-size: cover;
+}
+#img-preview-update img{
+    width: 200px; 
+    height: 200px; 
+    background-size: cover; 
+}
+#img-preview-delete img{
+    width: 200px; 
+    height: 200px; 
+    background-size: cover; 
+}
+#data-preview-update {
+    flex: 1;
+}
+
+
+#data-preview-delete {
+    flex: 1;
+}
+.modal-preview-image {
+    margin-right: 15px; /* Espacio entre la imagen y el contenido */
+}
+.requirements, #confirm-password {
+    margin-top: 5px;
+}
+
+.requirement__icon, .requirement__text {
+    display: inline !important;
+}
+
+#requirement-check {
+    color: #33A000;
+}
+
+#requirement-xmark {
+    color: #df1717;
+}
+
+.input-container {
+    position: relative;
+    width: 100%;
+}
+
+.toggle-password {
+    display: none;
+    position: absolute;
+    right: 175px;
+    z-index: 10;
+    top: 20%;
+    cursor: pointer;
+}
+
+#password-user {
+    padding-right: 40px;
+}
+
+/* Style for Chrome, Safari, Edge, Opera */
+input[type="password"]::-webkit-textfield-decoration-container {
+    display: none;
+}
+
+/* Style for Firefox */
+input[type="password"]::-moz-textfield-decoration-container {
+    display: none;
+}
+
+/* General style */
+input[type="password"]::-ms-reveal {
+    display: none;
+}
+
+.container-section-pass {
+    display: none;
+}
+
+@media screen and (max-width: 265px) {
+    .toggle-password {
+        right: 10px;
+        top: 10%;
+    }
+}

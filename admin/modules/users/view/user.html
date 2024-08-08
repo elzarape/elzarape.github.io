@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../../../../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../../../../assets/css/index.css">
+    <link rel="stylesheet" href="../../../../../assets/css/index-admin.css">
+    <link rel="stylesheet" href="../../../../../assets/css/modal.css">
+    <script src="https://kit.fontawesome.com/7348c59eb0.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <title>Admin | Usuarios</title>
+</head>
+
+<body>
+    <div class="min-vh-100">
+    <header class="d-flex flex-wrap justify-content-around">
+        <div class="container-logo d-flex align-items-center justify-content-center"><a href="#"><img class="logo"
+                    src="../../../../assets/img/restaurant/logo-el-zarape.png" alt="Logotipo El zarape"></a></div>
+        <div class="container-navigation d-flex ">
+            <ul class="navegation d-flex align-items-center">
+                <li class="navegation__item"><a class="navegation__link" href="#"><i
+                            class="navegation__icon fa-regular fa-user"></i></a></li>
+                </li>
+                <li class="navegation__item"><a class="navegation__link" href="#"><i
+                            class="navegation__icon fa-solid fa-right-from-bracket"></i></a></li>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <main class="content container">
+        <h1 class="content__element title display-2 text-center">Usuarios</h1>
+        <div class="content__element container-button container-fluid d-flex justify-content-center">
+            <button id="btn-create" class="button-create style-text" data-keyboard="false" data-backdrop="static">Crear nuevo registro</button>
+        </div>
+        <div class="content__element container-fluid">
+            <div class="container-table table-responsive">
+                <table class="table table-hover">
+                    <thead class="table-head">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nombre(s)</th>
+                            <th scope="col">Apellidos</th>
+                            <th scope="col">Telefono</th>
+                            <th scope="col">Sucursal</th>
+                            <th scope="col">Usuario</th>
+                            <th scope="col">Estatus</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-user">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+</div>
+    <footer>
+        <div class="footer-content">
+            <p class="footer-title">Restaurante</p>
+            <p class="highlight">El Zarape</p>
+            <nav class="d-flex flex-wrap footer-nav footer-nav-top">
+                <a href="#">Sucursal</a>
+                <a href="#">Sobre Nosotros</a>
+                <a href="#">Descargar App</a>
+            </nav>
+            <nav class="footer-nav footer-nav-bottom">
+                <a href="#">Información legal</a>
+                <span class="separator"></span>
+                <a href="#">Política de Privacidad</a>
+            </nav>
+            <p class="footer-copyright">Copyright ©2024 El Zarape. Diseñado por Deep Code</p>
+        </div>
+    </footer>
+
+    <!-- Modal CRUD to manage the components -->
+    <!--Modal to create new register-->
+    <div class="modal fade modal-lg modal-dialog-scrollable" id="modal-form" aria-hidden="true"
+        aria-labelledby="modal-create" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header d-flex justify-content-center">
+                    <h1 class="modal-title fs-5 title" id="form-title"></h1>
+                </div>
+                <div class="modal-body">
+                    <!--Delete form-create-user-->
+                    <form id="form-user">
+                        <div class="mb-3">
+                            <label for="name-user" class="col-form-label">Nombre(s)</label>
+                            <input type="text" class="form-control" id="name-user" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="f-last-name-user" class="col-for">Apellido paterno</label>
+                            <input type="text" class="form-control" id="f-last-name-user" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="m-last-name-user" class="col-for">Apellido materno</label>
+                            <input type="text" class="form-control" id="m-last-name-user" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="phone-user" class="col-for">Telefono</label>
+                            <input type="text" class="form-control" id="phone-user" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="col-form-label" for="branch-user">Sucursal</label>
+                            <select class="form-select form-select-sm p-2 select-categories" id="branch-user"
+                                required></select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="username-user">Usuario</label>
+                            <input type="text" class="form-control" id="username-user" required>
+                        </div>
+                        <div class="container-section-pass">
+                            <div class="mb-3">
+                                <label for="password-user" class="col-form-label">Nueva contraseña</label>
+                                <div class="input-container input-group">
+                                    <input type="password" class="form-control" id="password-user">
+                                    <span id="togglePassword" class="toggle-password">
+                                        <i class="password-eye fa-regular fa-eye"></i>
+                                    </span>
+                                    <button class="btn btn-info" type="button" id="btn-generate-password">Generar
+                                        contraseña</button>
+                                </div>
+                                <div class="requirements">
+                                    <div class="requirement" id="r-lower-case"></div>
+                                    <div class="requirement" id="r-upper-case"></div>
+                                    <div class="requirement" id="r-digit"></div>
+                                    <div class="requirement" id="r-special-char"></div>
+                                    <div class="requirement" id="r-length"></div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="confirm-password-user" class="col-form-label">Confirmar Nueva contraseña</label>
+                                <input type="password" class="form-control" id="confirm-password-user">
+                                <p id="confirm-password"></p>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <button class="modal-body__button btn-action" type="button" id="btn-update-password">Modificar
+                                constraseña</button>
+                        </div>
+                        <div id="container-status" class="mb-3">
+                            <label for="status-user" class="col-form-label">Estatus</label>
+                            <select class="form-select form-select-sm p-2 select-status" id="status-user"
+                                required></select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer d-flex justify-content-evenly flex-wrap-reverse">
+                    <button id="btn-cancel" type="button" class="modal-footer__button btn-cancel"
+                        data-bs-dismiss="modal" aria-label="Close">Cancelar</button>
+                    <button type="button" id="btn-preview-delete"
+                        class="modal-footer__button btn-delete">Eliminar</button>
+                    <button type="button" id="btn-clean" class="modal-footer__button btn-clean">Limpiar</button>
+                    <button type="button" id="btn-preview-create"
+                        class="modal-footer__button btn-agree">Registrar</button>
+
+                    <button type="button" id="btn-preview-update" class="modal-footer__button btn-modify">Modificar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--Modal to view preview-->
+    <div class="modal fade modal" id="modal-preview" aria-hidden="true" aria-labelledby="modal-preview" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header d-flex justify-content-center">
+                    <h1 class="modal-title fs-5 title" id="exampleModalToggleLabel">Vista previa</h1>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid d-flex flex-wrap justify-content-center">
+                        <div id="data-preview">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-center flex-column">
+                    <p>¿Desea realizar la acción?</p>
+                    <div class="footer-buttons">
+                        <button id="btn-agree" class="modal-footer__button btn-agree" data-bs-target="#modal-preview"
+                            data-bs-toggle="modal">Sí</button>
+                        <button class="modal-footer__button btn-delete" data-bs-target="#modal-form"
+                            data-bs-toggle="modal">No</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!--JS Bootstrap-->
+    <script src="../../../../assets/js/bootstrap.min.js"></script>
+    <script src="../controller/user.js"></script>
+    <!--JS Ajax-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</body>
+
+</html>

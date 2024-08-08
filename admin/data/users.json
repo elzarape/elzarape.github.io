@@ -1,0 +1,34 @@
+[
+    {
+        "name": "Daniel",
+        "fLastName": "Ojeda",
+        "mLastName": "Luna",
+        "phone": "4772356345",
+        "branch": 1,
+        "user": "Admin",
+        "password": "U2FsdGVkX18bQXw72a/3+WpNZ1Yurc+g8MmqSbPgrLo=",
+        "status": 1
+    },
+
+    {
+        "name": "Cesar",
+        "fLastName": "Bernal",
+        "mLastName": "Cruz",
+        "phone": "4770374528",
+        "branch": 1,
+        "user": "Trasher_rk",
+        "password": "U2FsdGVkX18B08xFoIqqjfFBGkIU/m1gv9IJWANd4QQ=",
+        "status": 1
+    },
+
+    {
+        "name": "Mozart Jorge Armando",
+        "fLastName": "Padilla",
+        "mLastName": "Velazques",
+        "phone": "4721800759",
+        "branch": 1,
+        "user": "MozartXD22",
+        "password": "U2FsdGVkX1+R7Uct2F4y968kv6HU3DniqYDSQf2yID8=",
+        "status": 1
+    }
+]

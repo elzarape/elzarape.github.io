@@ -1,0 +1,9 @@
+{
+    "id": "1",
+    "name": "Elzarape",
+    "location": "direccion",
+    "gps": "21º0942N 101º39'38w",
+    "Logo": "../../../../assets/img/logo-el-zarape.png",
+    "url": "zarape.com",
+    "schedule": "Lunes-Viernes 8:00-18:00"
+}
