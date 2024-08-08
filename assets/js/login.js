@@ -8,7 +8,7 @@ let aStatus;
 
 function loadData() {
     return Promise.all([
-        fetch("http://127.0.0.1:5500/admin/data/users.json")
+        fetch("https://elzarape.github.io/admin/data/users.json")
             .then((response) => response.json())
             .then((data) => {
                 users = data;
