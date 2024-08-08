@@ -22,7 +22,7 @@ function locationModule(btnModule) {
             window.location.href = "/admin/modules/foods/view/food.html";
             break;
         case "m-combos":
-            window.location.href = "/admin/modules/combos/view/combos2.html";
+            window.location.href = "/admin/modules/combos/view/combos.html";
             break;
         case "m-branchs":
             window.location.href = "/admin/modules/branch-offices/view/branch-office.html";
