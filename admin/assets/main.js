@@ -4,7 +4,6 @@ btnModules.forEach(btnModule => {
         locationModule(btnModule)
     })
 });
-console.log(idUser)
 function locationModule(btnModule) {
     let module = btnModule.getAttribute("id");
     console.log(module);
