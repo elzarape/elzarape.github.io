@@ -588,69 +588,46 @@ function confirmDeleteCombo() {
 }
 
 function llenarVistaPreviaDelete() {
-    const comboIndex = parseInt(document.getElementById('update-combo-id').value) - 1;
-    let nombre, descripcion, alimentos, bebidas, precio, estatus, file, foto;
+    const comboId = parseInt(document.getElementById('update-combo-id').value);
+    const comboIndex = comboId - 1;
+
     // Usar datos temporales si están disponibles
-    const data = tempComboData.id === document.getElementById('update-combo-id').value ? tempComboData : combos[comboIndex];
+    const data = tempComboData.id === comboId.toString() ? tempComboData : combos[comboIndex];
 
-    nombre = data.nombre;
-    descripcion = data.descripcion;
-    alimentos = data.alimentos || 'N/A';
-    bebidas = data.bebidas || 'N/A';
-    precio = data.precio;
-    foto = data.foto;
-    estatus = data.estatus;
-
-    document.getElementById('data-preview-delete').innerHTML = `
-    <p><strong>Nombre:</strong> ${nombre}</p>
-    <p><strong>Descripción:</strong> ${descripcion}</p>
-    <p><strong>Alimentos:</strong> ${alimentos}</p>
-    <p><strong>Bebidas:</strong> ${bebidas}</p>
-    <p><strong>Precio:</strong> $${precio.toFixed(2)}</p>
-    <p><strong>Estatus:</strong> ${estatus === '1' ? 'Activo' : 'Inactivo'}</p>
-`;
-
-    const combo = combos[comboIndex];
-    const comboSelected = combos[selectedComboId - 1];
-    if (!combo) {
-        nombre = comboSelected.nombre;
-        descripcion = comboSelected.descripcion;
-        alimentos = comboSelected.alimento
-        bebidas = comboSelected.bebida
-        precio = parseFloat(comboSelected.precio);
-        foto = comboSelected.foto;
-        estatus = comboSelected.estatus;
-        console.log("im", comboSelected)
-
-    } else {
-    nombre = document.getElementById('update-combo-name').value;
-    descripcion = document.getElementById('update-combo-description').value;
-    alimentos = Array.from(document.querySelectorAll('#update-combo-foods-container input:checked')).map(checkbox => checkbox.value).join(', ');
-    bebidas = Array.from(document.querySelectorAll('#update-combo-drinks-container input:checked')).map(checkbox => checkbox.value).join(', ');
-    precio = parseFloat(document.getElementById('update-combo-price').value);
-    fileInput = document.getElementById('update-combo-image');
-    file = fileInput.files[0];
-    estatus = document.getElementById('update-combo-status').value;
+    // Asegúrate de que los datos están disponibles
+    if (!data) {
+        console.error('Datos del combo no encontrados');
+        return;
     }
+
+    // Actualiza los valores
+    const nombre = data.nombre;
+    const descripcion = data.descripcion;
+    const alimentos = data.alimentos || 'N/A';
+    const bebidas = data.bebidas || 'N/A';
+    const precio = data.precio ? parseFloat(data.precio).toFixed(2) : '0.00';
+    const estatus = data.estatus === '1' ? 'Activo' : 'Inactivo';
+    const foto = data.foto || 'No image selected';
 
     document.getElementById('data-preview-delete').innerHTML = `
         <p><strong>Nombre:</strong> ${nombre}</p>
         <p><strong>Descripción:</strong> ${descripcion}</p>
-        <p><strong>Alimentos:</strong> ${alimentos || 'N/A'}</p>
-        <p><strong>Bebidas:</strong> ${bebidas || 'N/A'}</p>
-        <p><strong>Precio:</strong> $${precio.toFixed(2)}</p>
-        <p><strong>Estatus:</strong> ${estatus === '1' ? 'Activo' : 'Inactivo'}</p>
+        <p><strong>Alimentos:</strong> ${alimentos}</p>
+        <p><strong>Bebidas:</strong> ${bebidas}</p>
+        <p><strong>Precio:</strong> $${precio}</p>
+        <p><strong>Estatus:</strong> ${estatus}</p>
     `;
-    
-    if (comboSelected.imageName == "") {
-        document.getElementById('img-preview-delete').innerHTML = `<img src="${combo.foto}" style="width: 200px; height: 200px;" />`;
-    } else {
-        document.getElementById('img-preview-delete').innerHTML = `<img src="${comboSelected.foto}" style="width: 200px; height: 200px;" />`;
-    }
+
+    // Mostrar la imagen de vista previa
+    document.getElementById('img-preview-delete').innerHTML = foto === 'No image selected' 
+        ? 'No image selected' 
+        : `<img src="${foto}" style="width: 200px; height: 200px;" />`;
+
+    // Mostrar los modales
     $('#modal-preview-delete').modal('show');
     $('#modal-update').modal('hide');
-    
 }
+
 
 
 function eliminarCombo() {
