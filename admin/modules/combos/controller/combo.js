@@ -447,12 +447,11 @@ function mostrarModalConfirmacionUpdate() {
 }
 
 function llenarVistaPreviaUpdate() {
-    
     const comboIndex = parseInt(document.getElementById('update-combo-id').value) - 1;
     let nombre, descripcion, alimentos, bebidas, precio, estatus, file, foto;
     const combo = combos[comboIndex];
     const comboSelected = combos[selectedComboId - 1];
-
+    console.log(comboSelected)
     if (!combo) {
         nombre = comboSelected.nombre;
         descripcion = comboSelected.descripcion;
@@ -593,7 +592,6 @@ function llenarVistaPreviaDelete() {
 
     // Usar datos temporales si están disponibles
     const data = tempComboData.id === comboId.toString() ? tempComboData : combos[comboIndex];
-
     // Asegúrate de que los datos están disponibles
     if (!data) {
         console.error('Datos del combo no encontrados');
@@ -603,8 +601,8 @@ function llenarVistaPreviaDelete() {
     // Actualiza los valores
     const nombre = data.nombre;
     const descripcion = data.descripcion;
-    const alimentos = data.alimentos || 'N/A';
-    const bebidas = data.bebidas || 'N/A';
+    const alimentos = data.alimento || 'N/A';
+    const bebidas = data.bebida || 'N/A';
     const precio = data.precio ? parseFloat(data.precio).toFixed(2) : '0.00';
     const estatus = data.estatus === '1' ? 'Activo' : 'Inactivo';
     const foto = data.foto || 'No image selected';

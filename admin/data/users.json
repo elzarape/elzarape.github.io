@@ -1,5 +1,16 @@
 [
     {
+        "name": "Admin",
+        "fLastName": "Invitado",
+        "mLastName": "Temporal",
+        "phone": "1122334455",
+        "branch": 1,
+        "user": "Admin.invitado",
+        "password": "U2FsdGVkX19JL33l3/CTohbzyqS5GY/1Tz/Ul6UTW+So9BO4zHo0l2l+Sjc4lOL5",
+        "status": 1
+    },
+
+    {
         "name": "Daniel",
         "fLastName": "Ojeda",
         "mLastName": "Luna",
