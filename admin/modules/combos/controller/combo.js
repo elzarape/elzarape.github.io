@@ -78,7 +78,7 @@ function cargarDatos() {
             console.log("Combos cargados:", combos);
             llenarTablaCombos();
         }),
-    fetch("http://127.0.0.1:5500/admin/data/status.json")
+    fetch("https://elzarape.github.io/admin/data/status.json")
         .then(response => response.json())
         .then(data => {
             status = data; 
