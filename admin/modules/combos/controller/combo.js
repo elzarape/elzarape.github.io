@@ -57,21 +57,21 @@ cargarDatos();
 
 function cargarDatos() {
     return Promise.all([
-        fetch("http://127.0.0.1:5500/admin/data/foods.json")
+        fetch("https://elzarape.github.io/admin/data/foods.json")
         .then(response => response.json())
         .then(data => {
             foods = data; 
             console.log("Foods cargados:", foods);
             llenarSelectsFoods(); 
         }),
-    fetch("http://127.0.0.1:5500/admin/data/drinks.json")
+    fetch("https://elzarape.github.io/admin/data/drinks.json")
         .then(response => response.json())
         .then(data => {
             drinks = data;
             console.log("Drinks cargados:", drinks);
             llenarSelectsDrinks();
         }),
-    fetch("http://127.0.0.1:5500/admin/data/combos.json")
+    fetch("https://elzarape.github.io/admin/data/combos.json")
         .then(response => response.json())
         .then(data => {
             combos = data;
