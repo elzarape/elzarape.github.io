@@ -2,7 +2,9 @@ let foods = [];
 let drinks = [];
 let combos = [];
 let status = [];
+let idConservar = null;
 let selectedComboId = null;
+let tempComboData = {};
 
 function toggleSearchFields() {
     let searchFields = document.getElementById('search-fields');
@@ -37,7 +39,7 @@ function searchCombos() {
     loadCombos(filteredCombos);
 }
 
-window.onload = function() {
+/*window.onload = function() {
     cargarDatos();
     
     document.getElementById('btn-create').addEventListener('click', mostrarModalConfirmacion);
@@ -49,38 +51,39 @@ window.onload = function() {
     document.getElementById('btn-search').addEventListener('click', searchCombos);
     document.querySelector('.button-create').addEventListener('click', toggleSearchFields);
     };
-    
+*/
 
+cargarDatos();
 
 function cargarDatos() {
     return Promise.all([
-        fetch("https://elzarape.github.io/admin/data/foods.json")
-            .then(response => response.json())
-            .then(data => {
-                foods = data;
-                console.log("Foods cargados:", foods);
-                llenarSelectsFoods();
-            }),
-        fetch("https://elzarape.github.io/admin/data/drinks.json")
-            .then(response => response.json())
-            .then(data => {
-                drinks = data;
-                console.log("Drinks cargados:", drinks);
-                llenarSelectsDrinks();
-            }),
-        fetch("https://elzarape.github.io/admin/data/combos.json")
-            .then(response => response.json())
-            .then(data => {
-                combos = data;
-                console.log("Combos cargados:", combos);
-                llenarTablaCombos();
-            }),
-        fetch("https://elzarape.github.io/admin/data/status.json")
-            .then(response => response.json())
-            .then(data => {
-                status = data;
-                console.log("Estatus cargados:", status);
-            })
+        fetch("http://127.0.0.1:5500/admin/data/foods.json")
+        .then(response => response.json())
+        .then(data => {
+            foods = data; 
+            console.log("Foods cargados:", foods);
+            llenarSelectsFoods(); 
+        }),
+    fetch("http://127.0.0.1:5500/admin/data/drinks.json")
+        .then(response => response.json())
+        .then(data => {
+            drinks = data;
+            console.log("Drinks cargados:", drinks);
+            llenarSelectsDrinks();
+        }),
+    fetch("http://127.0.0.1:5500/admin/data/combos.json")
+        .then(response => response.json())
+        .then(data => {
+            combos = data;
+            console.log("Combos cargados:", combos);
+            llenarTablaCombos();
+        }),
+    fetch("http://127.0.0.1:5500/admin/data/status.json")
+        .then(response => response.json())
+        .then(data => {
+            status = data; 
+            console.log("Estatus cargados:", status);
+        })
     ]);
 }
 
@@ -135,6 +138,7 @@ async function llenarSelectsFoods(initialize = false) {
         }
     });
 }
+
 function llenarSelectsDrinks() {
     const containerCreate = document.getElementById('combo-drinks-container');
     const containerUpdate = document.getElementById('update-combo-drinks-container');
@@ -193,6 +197,7 @@ function llenarSelectsDrinks() {
 function loadCombos(filteredCombos) {
     llenarTablaCombos(filteredCombos);
 }
+
 function llenarTablaCombos(combosParaMostrar = combos) {
     const tbody = document.getElementById('combo-table-body');
     tbody.innerHTML = '';
@@ -251,12 +256,14 @@ function llenarTablaCombos(combosParaMostrar = combos) {
 
 
 function mostrarModalConfirmacion() {
-    if (!validarCampos()) {
-        return;
+    const form = document.querySelector('#modal-create form');
+    if (form.checkValidity()) {
+        llenarVistaPrevia();
+        $('#modal-preview').modal('show');
+        $('#modal-create').modal('hide');
+    } else {
+        form.reportValidity();  // Muestra los mensajes de validación del navegador
     }
-    llenarVistaPrevia();
-    $('#modal-preview').modal('show');
-    $('#modal-create').modal('hide');
 }
 
 
@@ -319,7 +326,6 @@ async function createCombo() {
     if (!validarCampos()) {
         return;
     }
-
     const nombre = document.getElementById('combo-name').value;
     const descripcion = document.getElementById('combo-description').value;
     const alimento = Array.from(document.querySelectorAll('#combo-foods-container input:checked')).map(checkbox => checkbox.value);
@@ -359,26 +365,27 @@ function resetCreateForm() {
     document.getElementById('combo-name').value = '';
     document.getElementById('combo-description').value = '';
     document.getElementById('combo-price').value = '';
-    
-
     document.querySelectorAll('#combo-foods-container input').forEach(checkbox => {
         checkbox.checked = false;
     });
-
-
     document.querySelectorAll('#combo-drinks-container input').forEach(checkbox => {
         checkbox.checked = false;
     });
-    
-
-
     document.getElementById('combo-image').value = ''; 
     document.getElementById('img-preview').innerHTML = 'No image selected'; 
-
     document.getElementById('status').value = status[0].id; 
+    
 
-
-    $('#modal-create').modal('hide');
+     // Mantén el ID seleccionado, pero limpia los demás campos
+    if (selectedComboId !== null) {
+        nombreInput.value = '';
+        descripcionInput.value = '';
+        alimentosCheckboxes.forEach(checkbox => checkbox.checked = false);
+        bebidasCheckboxes.forEach(checkbox => checkbox.checked = false);
+        precioInput.value = '';
+        imagenInput.value = null;
+        $('#modal-create').modal('hide');
+    }
 }
 
 function obtenerImagenBase64(file) {
@@ -392,7 +399,7 @@ function obtenerImagenBase64(file) {
 
 function mostrarModalActualizar(index) {
     console.log('Número de fila recibido para actualización:', index);
-
+    selectedComboId = index;
     const combo = combos[index - 1];
     if (combo) {
         console.log('Combo encontrado:', combo);
@@ -429,26 +436,41 @@ function mostrarModalActualizar(index) {
 }
 
 function mostrarModalConfirmacionUpdate() {
-    llenarVistaPreviaUpdate();
-    $('#modal-preview-update').modal('show');
-    console.log('Mostrando hide ...');
-
+    const form = document.querySelector('#modal-update form');
+    if (form.checkValidity()) {
+        llenarVistaPreviaUpdate();
+        $('#modal-preview-update').modal('show');
+        $('#modal-update').modal('hide');
+    } else {
+        form.reportValidity();  
+    }
 }
 
-
-
-
 function llenarVistaPreviaUpdate() {
-    const nombre = document.getElementById('update-combo-name').value;
-    const descripcion = document.getElementById('update-combo-description').value;
-    const alimentos = Array.from(document.querySelectorAll('#update-combo-foods-container input:checked')).map(checkbox => checkbox.value).join(', ');
-    const bebidas = Array.from(document.querySelectorAll('#update-combo-drinks-container input:checked')).map(checkbox => checkbox.value).join(', ');
-    const precio = parseFloat(document.getElementById('update-combo-price').value);
-    const fileInput = document.getElementById('update-combo-image');
-    const file = fileInput.files[0];
-    console.log(file);
-    console.log(fileInput);
-    const estatus = document.getElementById('update-combo-status').value;
+    
+    const comboIndex = parseInt(document.getElementById('update-combo-id').value) - 1;
+    let nombre, descripcion, alimentos, bebidas, precio, estatus, file, foto;
+    const combo = combos[comboIndex];
+    const comboSelected = combos[selectedComboId - 1];
+
+    if (!combo) {
+        nombre = comboSelected.nombre;
+        descripcion = comboSelected.descripcion;
+        alimentos = comboSelected.alimento;
+        bebidas = comboSelected.bebida;
+        precio = parseFloat(comboSelected.precio);
+        foto = comboSelected.foto;
+        estatus = comboSelected.estatus;
+    } else {
+        nombre = document.getElementById('update-combo-name').value;
+        descripcion = document.getElementById('update-combo-description').value;
+        alimentos = Array.from(document.querySelectorAll('#update-combo-foods-container input:checked')).map(checkbox => checkbox.value).join(', ');
+        bebidas = Array.from(document.querySelectorAll('#update-combo-drinks-container input:checked')).map(checkbox => checkbox.value).join(', ');
+        precio = parseFloat(document.getElementById('update-combo-price').value);
+        fileInput = document.getElementById('update-combo-image');
+        file = fileInput.files[0];
+        estatus = document.getElementById('update-combo-status').value;
+    }
 
     document.getElementById('data-preview-update').innerHTML = `
         <p><strong>Nombre:</strong> ${nombre}</p>
@@ -458,22 +480,27 @@ function llenarVistaPreviaUpdate() {
         <p><strong>Precio:</strong> $${precio.toFixed(2)}</p>
         <p><strong>Estatus:</strong> ${estatus === '1' ? 'Activo' : 'Inactivo'}</p>
     `;
+
     if (file) {
         obtenerImagenBase64(file).then(base64 => {
             document.getElementById('img-preview-update').innerHTML = `<img src="${base64}" style="width: 200px; height: 200px;" />`;
         });
     } else {
-        const existingImageSrc = document.querySelector('#img-preview-update img')?.src;
+        const existingImageSrc = comboSelected.foto || document.querySelector('#img-preview-update img')?.src;
         document.getElementById('img-preview-update').innerHTML = existingImageSrc ? `<img src="${existingImageSrc}" style="width: 200px; height: 200px;" />` : 'No image selected';
-        
-        
     }
+
+    $('#modal-preview-update').modal('show');
+    $('#modal-update').modal('hide');
 }
+
+
 function regresarAlModalUpdate() {
     $('#modal-preview-update').modal('hide'); 
     $('#modal-update').modal('show'); 
 }
 function updateCombo() {
+    
     const comboIndex = parseInt(document.getElementById('update-combo-id').value);
     const combo = combos[comboIndex - 1];
     
@@ -515,12 +542,26 @@ function aplicarActualizacion(combo, nombre, descripcion, alimento, bebida, prec
     llenarTablaCombos();
     $('#modal-preview-update').modal('hide');
 }
-
 function resetUpdateForm() {
+    // Asegúrate de que el ID se conserva
+    const comboId = document.getElementById('update-combo-id').value;
+    
+    // Guardar datos del formulario en una variable temporal
+    tempComboData = {
+        nombre: document.getElementById('update-combo-name').value,
+        descripcion: document.getElementById('update-combo-description').value,
+        alimentos: Array.from(document.querySelectorAll('#update-combo-foods-container input:checked')).map(checkbox => checkbox.value).join(', '),
+        bebidas: Array.from(document.querySelectorAll('#update-combo-drinks-container input:checked')).map(checkbox => checkbox.value).join(', '),
+        precio: parseFloat(document.getElementById('update-combo-price').value),
+        estatus: document.getElementById('update-combo-status').value,
+        foto: document.getElementById('update-combo-image').value
+    };
+
+    // Limpiar campos de formulario
     document.getElementById('update-combo-name').value = '';
     document.getElementById('update-combo-description').value = '';
     document.getElementById('update-combo-price').value = '';
-    
+    document.getElementById('update-combo-status').value = '';
 
     document.querySelectorAll('#update-combo-foods-container input').forEach(checkbox => {
         checkbox.checked = false;
@@ -530,108 +571,67 @@ function resetUpdateForm() {
         checkbox.checked = false;
     });
 
-    document.getElementById('update-combo-image').value = '';
-    document.getElementById('img-preview-update').innerHTML = 'No image selected';
+    document.getElementById('update-combo-image').value = ''; 
+    document.getElementById('img-preview-update').innerHTML = 'No image selected'; 
 
-
-    document.getElementById('update-combo-status').value = '0'; 
-    document.getElementById('update-combo-id').value = '';
+    // Restaurar el ID del combo
+    document.getElementById('update-combo-id').value = comboId; 
 }
 
-/*
-function confirmDeleteCombo(id) {
-    document.getElementById('update-combo-id').value = id;
-    llenarVistaPreviaDelete();
-    $('#modal-preview-delete').modal('show');
-}
-
-function llenarVistaPreviaDelete() {
-    const comboIndex = parseInt(document.getElementById('update-combo-id').value, 10);
-    const combo = combos.find(c => c.id === comboIndex);
-    
-    if (!combo) {
-        console.error('Combo no encontrado con el ID:', comboIndex);
-        return;
-    }
-
-    // Llenar la vista previa del modal con los detalles del combo
-    document.getElementById('data-preview-delete').innerHTML = `
-        <p><strong>Nombre:</strong> ${combo.nombre}</p>
-        <p><strong>Descripción:</strong> ${combo.descripcion}</p>
-        <p><strong>Alimentos:</strong> ${combo.alimento || 'N/A'}</p>
-        <p><strong>Bebidas:</strong> ${combo.bebida || 'N/A'}</p>
-        <p><strong>Precio:</strong> $${combo.precio.toFixed(2)}</p>
-        <p><strong>Estatus:</strong> ${combo.estatus === '1' ? 'Activo' : 'Inactivo'}</p>
-    `;
-
-    if (combo.foto) {
-        document.getElementById('img-preview-delete').innerHTML = `<img src="${combo.foto}" style="width: 200px; height: 200px;" />`;
-    } else {
-        document.getElementById('img-preview-delete').innerHTML = 'No image available';
-    }
-}
-
-function eliminarCombo() {
-    const comboIndex = parseInt(document.getElementById('update-combo-id').value, 10);
-    const comboPosition = combos.findIndex(c => c.id === comboIndex);
-
-    if (comboPosition !== -1) {
-        // Eliminar el combo del arreglo
-        combos.splice(comboPosition, 1);
-        actualizarTabla();
-        $('#modal-preview-delete').modal('hide');
-    } else {
-        console.error('No se pudo eliminar el combo, ID no encontrado:', comboIndex);
-    }
-}
-
-function actualizarTabla() {
-    const tabla = document.getElementById('combo-table');
-    tabla.innerHTML = ''; // Vaciar la tabla antes de llenarla
-
-    combos.forEach(combo => {
-        tabla.innerHTML += `
-            <tr>
-                <td>${combo.id}</td>
-                <td>${combo.nombre}</td>
-                <td>${combo.descripcion}</td>
-                <td>${combo.alimento || 'N/A'}</td>
-                <td>${combo.bebida || 'N/A'}</td>
-                <td>$${combo.precio.toFixed(2)}</td>
-                <td>${combo.estatus === '1' ? 'Activo' : 'Inactivo'}</td>
-                <td><button onclick="confirmDeleteCombo(${combo.id})">Eliminar</button></td>
-            </tr>
-        `;
-    });
-}
-    */
 function confirmDeleteCombo() {
     llenarVistaPreviaDelete();
+    $('#modal-preview-creatre').modal('show');
     console.log('Mostrando modal de vista previa delete...');
-    $('#modal-preview-delete').modal('show');
+    $('#modal-update').modal('hide');
+    console.log('Mostrando modal de eliminación...');
     
 }
 
 function llenarVistaPreviaDelete() {
     const comboIndex = parseInt(document.getElementById('update-combo-id').value) - 1;
-    const combo = combos[comboIndex];
-    
-    if (!combo) {
-        console.error('Combo no encontrado en el índice:', comboIndex);
-        return;
-    }
+    let nombre, descripcion, alimentos, bebidas, precio, estatus, file, foto;
+    // Usar datos temporales si están disponibles
+    const data = tempComboData.id === document.getElementById('update-combo-id').value ? tempComboData : combos[comboIndex];
 
-    const nombre = document.getElementById('update-combo-name').value;
-    const descripcion = document.getElementById('update-combo-description').value;
-    const alimentos = Array.from(document.querySelectorAll('#update-combo-foods-container input:checked')).map(checkbox => checkbox.value).join(', ');
-    const bebidas = Array.from(document.querySelectorAll('#update-combo-drinks-container input:checked')).map(checkbox => checkbox.value).join(', ');
-    const precio = parseFloat(document.getElementById('update-combo-price').value);
-    const fileInput = document.getElementById('update-combo-image');
-    
-    const file = fileInput.files[0];
-    console.log(file);
-    console.log(fileInput);
-    const estatus = document.getElementById('update-combo-status').value;
+    nombre = data.nombre;
+    descripcion = data.descripcion;
+    alimentos = data.alimentos || 'N/A';
+    bebidas = data.bebidas || 'N/A';
+    precio = data.precio;
+    foto = data.foto;
+    estatus = data.estatus;
+
+    document.getElementById('data-preview-delete').innerHTML = `
+    <p><strong>Nombre:</strong> ${nombre}</p>
+    <p><strong>Descripción:</strong> ${descripcion}</p>
+    <p><strong>Alimentos:</strong> ${alimentos}</p>
+    <p><strong>Bebidas:</strong> ${bebidas}</p>
+    <p><strong>Precio:</strong> $${precio.toFixed(2)}</p>
+    <p><strong>Estatus:</strong> ${estatus === '1' ? 'Activo' : 'Inactivo'}</p>
+`;
+
+    const combo = combos[comboIndex];
+    const comboSelected = combos[selectedComboId - 1];
+    if (!combo) {
+        nombre = comboSelected.nombre;
+        descripcion = comboSelected.descripcion;
+        alimentos = comboSelected.alimento
+        bebidas = comboSelected.bebida
+        precio = parseFloat(comboSelected.precio);
+        foto = comboSelected.foto;
+        estatus = comboSelected.estatus;
+        console.log("im", comboSelected)
+
+    } else {
+    nombre = document.getElementById('update-combo-name').value;
+    descripcion = document.getElementById('update-combo-description').value;
+    alimentos = Array.from(document.querySelectorAll('#update-combo-foods-container input:checked')).map(checkbox => checkbox.value).join(', ');
+    bebidas = Array.from(document.querySelectorAll('#update-combo-drinks-container input:checked')).map(checkbox => checkbox.value).join(', ');
+    precio = parseFloat(document.getElementById('update-combo-price').value);
+    fileInput = document.getElementById('update-combo-image');
+    file = fileInput.files[0];
+    estatus = document.getElementById('update-combo-status').value;
+    }
 
     document.getElementById('data-preview-delete').innerHTML = `
         <p><strong>Nombre:</strong> ${nombre}</p>
@@ -642,11 +642,14 @@ function llenarVistaPreviaDelete() {
         <p><strong>Estatus:</strong> ${estatus === '1' ? 'Activo' : 'Inactivo'}</p>
     `;
     
-    if (combo.foto) {
+    if (comboSelected.imageName == "") {
         document.getElementById('img-preview-delete').innerHTML = `<img src="${combo.foto}" style="width: 200px; height: 200px;" />`;
     } else {
-        document.getElementById('img-preview-delete').innerHTML = 'No image selected';
+        document.getElementById('img-preview-delete').innerHTML = `<img src="${comboSelected.foto}" style="width: 200px; height: 200px;" />`;
     }
+    $('#modal-preview-delete').modal('show');
+    $('#modal-update').modal('hide');
+    
 }
 
 

@@ -8,22 +8,21 @@
     <link rel="stylesheet" href="../../../../../assets/css/index.css">
     <link rel="stylesheet" href="../../../../../assets/css/index-admin.css">
     <link rel="stylesheet" href="../../../../../assets/css/modal.css">
+    <link rel="shortcut icon" href="/assets/img/restaurant/logo-el-zarape.png" type="image/x-icon">
     <script src="https://kit.fontawesome.com/7348c59eb0.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
     <title>Admin | Usuarios</title>
 </head>
 
 <body>
-    <div class="min-vh-100">
+    <div class="min-vh-100 mb-5">
     <header class="d-flex flex-wrap justify-content-around">
         <div class="container-logo d-flex align-items-center justify-content-center"><a href="#"><img class="logo"
                     src="../../../../assets/img/restaurant/logo-el-zarape.png" alt="Logotipo El zarape"></a></div>
         <div class="container-navigation d-flex ">
             <ul class="navegation d-flex align-items-center">
-                <li class="navegation__item"><a class="navegation__link" href="#"><i
-                            class="navegation__icon fa-regular fa-user"></i></a></li>
-                </li>
-                <li class="navegation__item"><a class="navegation__link" href="#"><i
+                <li class="navegation__item"><a class="navegation__link" href="/admin/panel.html"><i class="navegation__icon fa-solid fa-house"></i></a></li>
+                <li class="navegation__item"><a class="navegation__link" href="/pages/login.html"><i
                             class="navegation__icon fa-solid fa-right-from-bracket"></i></a></li>
                 </li>
             </ul>
@@ -33,7 +32,18 @@
         <h1 class="content__element title display-2 text-center">Usuarios</h1>
         <div class="content__element container-button container-fluid d-flex justify-content-center">
             <button id="btn-create" class="button-create style-text" data-keyboard="false" data-backdrop="static">Crear nuevo registro</button>
-        </div>
+            <button class="button-action style-text search-button" data-bs-toggle="modal" onclick="toggleSearchFields()">
+                <i class="fa-solid fa-search"></i> </button>
+            </div>
+            <div class="search-container">
+                <div id="search-fields" style="display: none;">
+            <div class="mb-3">
+                <label for="search-user" class="form-label">Usuario:</label>
+                <input type="text" class="form-control" id="search-user" oninput="searchUser()">
+            </div>
+                </div>
+            </div>
+        
         <div class="content__element container-fluid">
             <div class="container-table table-responsive">
                 <table class="table table-hover">

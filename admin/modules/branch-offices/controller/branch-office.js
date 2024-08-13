@@ -47,6 +47,7 @@ btnCancel.addEventListener("click", cleanForm);
 btnClean.addEventListener("click", cleanForm);
 
 document.getElementById("btn-create").addEventListener("click", () => {
+    cleanForm();
     formTitle.textContent = "Crear nueva Sucursal"
     containerStatus.style.display = 'none';
     statusInput.removeAttribute("required");
@@ -81,15 +82,14 @@ function loadData() {
     ]);
 }
 
-
-function updateTable() {
+function updateTable(listBranches = branches) {
     let body = "";
 
-    branches.forEach(function (elemento) {
+    listBranches.forEach(function (elemento) {
         let status = aStatus.find(item => item.id == elemento.status)?.status;
         let registro = '<tr>' +
             '<tr class="table-row">' +
-            '<td>' + Number(branches.indexOf(elemento) + 1) + '</td>' +
+            '<td>' + Number(listBranches.indexOf(elemento) + 1) + '</td>' +
             '<td>' + elemento.name + '</td>' +
             '<td>' + elemento.number + `, ` + elemento.street + `, ` + elemento.neighborhood + `, ` + elemento.cp + `, ` + states[elemento.state] + `, México`  + '</td>' +
             '<td>' + elemento.latitude + ` ` + elemento.longitude + '</td>' +
@@ -202,7 +202,6 @@ function cleanForm() {
 async function actionForm() {
     switch (action) {
         case "create":
-
             let newBranch = await getFormElements(action);
             branches.push(newBranch);
             cleanForm();
@@ -292,8 +291,30 @@ function loadSelectsInpunt() {
     statusInput.innerHTML = body
 }
 
+
+function toggleSearchFields() {
+    let searchFields = document.getElementById('search-fields');
+    if (searchFields.style.display === 'none' || searchFields.style.display === '') {
+        searchFields.style.display = 'block';
+    } else {
+        searchFields.style.display = 'none';
+    }
+}
+function searchBranchOffices() {
+    let nameBranch = document.getElementById('search-branch-offices').value.toLowerCase();
+    let filteredBranch = branches.filter(branch => {
+        let nameMatch = branch.name.toLowerCase().includes(nameBranch);
+        return nameMatch;
+    });
+    loadBranch(filteredBranch);
+}
+
+function loadBranch(filteredBranch) {
+    updateTable(filteredBranch)
+}
+
 // Cargar los datos y luego actualizar la tabla
 loadData().then(() => {
     loadSelectsInpunt()
-    updateTable();
+    updateTable(branches);
 });

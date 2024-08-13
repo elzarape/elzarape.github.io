@@ -10,7 +10,6 @@ function locationModule(btnModule) {
     switch (module) {
         case "m-user":
             window.location.href = "/admin/modules/users/view/user.html";
-            updateUser = true;
             break;
         case "m-users":
             window.location.href = "/admin/modules/users/view/user.html";
@@ -22,7 +21,7 @@ function locationModule(btnModule) {
             window.location.href = "/admin/modules/foods/view/food.html";
             break;
         case "m-combos":
-            window.location.href = "/admin/modules/combos/view/combos.html";
+            window.location.href = "/admin/modules/combos/view/combo.html";
             break;
         case "m-branchs":
             window.location.href = "/admin/modules/branch-offices/view/branch-office.html";

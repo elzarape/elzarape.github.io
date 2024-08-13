@@ -8,56 +8,78 @@
     <link rel="stylesheet" href="../assets/css/index.css">
     <link rel="stylesheet" href="../assets/css/index-admin.css">
     <link rel="stylesheet" href="../assets/css/modal.css">
+    <link rel="shortcut icon" href="/assets/img/restaurant/logo-el-zarape.png" type="image/x-icon">
     <script src="https://kit.fontawesome.com/7348c59eb0.js" crossorigin="anonymous"></script>
-    <title>Document</title>
+    <title>Admin | Menu</title>
 </head>
 
 <body>
-    <header class="d-flex flex-wrap justify-content-around">
-        <div class="container-logo d-flex align-items-center justify-content-center"><a href="#"><img class="logo"
-                    src="../assets/img/restaurant/logo-el-zarape.png" alt="Logotipo El zarape"></a></div>
-        <div class="container-navigation d-flex ">
-            <ul class="navegation d-flex align-items-center">
-                <li class="navegation__item"><a class="navegation__link" href="#"><i
-                            class="navegation__icon fa-regular fa-user"></i></a></li>
-                </li>
-                <li class="navegation__item"><a class="navegation__link" href="../pages/login.html"><i
-                            class="navegation__icon fa-solid fa-right-from-bracket"></i></a></li>
-                </li>
-            </ul>
-        </div>
-    </header>
-    <main class="content container">
-        <h1 class="content__element title display-2 text-center">Administrador El Zarape</h1>
-        <div class="content__element container-fluid">
-            <div class="container-cards container-fluid d-flex flex-wrap justify-content-center">
+    <div class="min-vh-100 mb-5">
+        <header class="d-flex flex-wrap justify-content-around">
+            <div class="container-logo d-flex align-items-center justify-content-center"><a href="#"><img class="logo"
+                        src="../assets/img/restaurant/logo-el-zarape.png" alt="Logotipo El zarape"></a></div>
+            <div class="container-navigation d-flex ">
+                <ul class="navegation d-flex align-items-center">
+                    <li class="navegation__item"><a class="navegation__link" href="#"><i
+                                class="navegation__icon fa-regular fa-user"></i></a></li>
+                    </li>
+                    <li class="navegation__item"><a class="navegation__link" href="/pages/login.html"><i
+                                class="navegation__icon fa-solid fa-right-from-bracket"></i></a></li>
+                    </li>
+                </ul>
+            </div>
+        </header>
+        <main class="content container">
+            <h1 class="content__element title display-2 text-center">Administrador El Zarape</h1>
+            <div class="content__element container-fluid">
+                <div class="container-cards container-fluid d-flex flex-wrap justify-content-center">
+                    <!--
                 <div id="m-user" class="card__item d-flex flex-column justify-content-center align-items-center"><i
                         class="fa-solid fa-user card__icon display-2"></i>
                     <h3 class="card__title">Usuario</h3>
                 </div>
-                <div id="m-users" class="card__item d-flex flex-column justify-content-center align-items-center"><i
-                        class="fa-solid fa-users card__icon display-2"></i>
-                    <h3 class="card__title">Usuarios</h3>
-                </div>
-                <div id="m-branchs" class="card__item d-flex flex-column justify-content-center align-items-center"><i
-                        class="fa-solid fa-store card__icon display-2"></i>
-                    <h3 class="card__title">Sucursales</h3>
-                </div>
-                <div id="m-foods" class="card__item d-flex flex-column justify-content-center align-items-center"><i
-                        class="fa-solid fa-utensils card__icon display-2"></i>
-                    <h3 class="card__title">Alimentos</h3>
-                </div>
-                <div id="m-drinks" class="card__item d-flex flex-column justify-content-center align-items-center"><i
-                        class="fa-solid fa-mug-saucer card__icon display-2"></i>
-                    <h3 class="card__title">Bebidas</h3>
-                </div>
-                <div id="m-combos" class="card__item d-flex flex-column justify-content-center align-items-center"><i
-                        class="fa-solid fa-bag-shopping card__icon display-2"></i>
-                    <h3 class="card__title">Combos</h3>
+                -->
+                    <div id="m-users" class="card__item d-flex flex-column justify-content-center align-items-center"><i
+                            class="fa-solid fa-users card__icon display-2"></i>
+                        <h3 class="card__title">Usuarios</h3>
+                    </div>
+                    <div id="m-branchs" class="card__item d-flex flex-column justify-content-center align-items-center">
+                        <i class="fa-solid fa-store card__icon display-2"></i>
+                        <h3 class="card__title">Sucursales</h3>
+                    </div>
+                    <div id="m-foods" class="card__item d-flex flex-column justify-content-center align-items-center"><i
+                            class="fa-solid fa-utensils card__icon display-2"></i>
+                        <h3 class="card__title">Alimentos</h3>
+                    </div>
+                    <div id="m-drinks" class="card__item d-flex flex-column justify-content-center align-items-center">
+                        <i class="fa-solid fa-mug-saucer card__icon display-2"></i>
+                        <h3 class="card__title">Bebidas</h3>
+                    </div>
+                    <div id="m-combos" class="card__item d-flex flex-column justify-content-center align-items-center">
+                        <i class="fa-solid fa-bag-shopping card__icon display-2"></i>
+                        <h3 class="card__title">Combos</h3>
+                    </div>
                 </div>
             </div>
+        </main>
+    </div>
+    <footer>
+        <div class="footer-content">
+            <p class="footer-title">Restaurante</p>
+            <p class="highlight">El Zarape</p>
+            <nav class="d-flex flex-wrap footer-nav footer-nav-top">
+                <a href="#">Sucursal</a>
+                <a href="#">Sobre Nosotros</a>
+                <a href="#">Descargar App</a>
+            </nav>
+            <nav class="footer-nav footer-nav-bottom">
+                <a href="#">Información legal</a>
+                <span class="separator"></span>
+                <a href="#">Política de Privacidad</a>
+            </nav>
+            <p class="footer-copyright">Copyright ©2024 El Zarape. Diseñado por Deep Code</p>
         </div>
-    </main>
+    </footer>
     <!--JS Bootstrap-->
     <script src="../assets/js/bootstrap.min.js"></script>
     <script src="/admin/assets/main.js"></script>

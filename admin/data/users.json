@@ -3,9 +3,9 @@
         "name": "Daniel",
         "fLastName": "Ojeda",
         "mLastName": "Luna",
-        "phone": "4772356345",
+        "phone": "5523456789",
         "branch": 1,
-        "user": "Admin",
+        "user": "daniel.ojeda",
         "password": "U2FsdGVkX18bQXw72a/3+WpNZ1Yurc+g8MmqSbPgrLo=",
         "status": 1
     },
@@ -14,9 +14,9 @@
         "name": "Cesar",
         "fLastName": "Bernal",
         "mLastName": "Cruz",
-        "phone": "4770374528",
+        "phone": "5567890123",
         "branch": 1,
-        "user": "Trasher_rk",
+        "user": "cesar.bernal",
         "password": "U2FsdGVkX18B08xFoIqqjfFBGkIU/m1gv9IJWANd4QQ=",
         "status": 1
     },
@@ -25,10 +25,88 @@
         "name": "Mozart Jorge Armando",
         "fLastName": "Padilla",
         "mLastName": "Velazques",
-        "phone": "4721800759",
+        "phone": "5534567890",
         "branch": 1,
-        "user": "MozartXD22",
+        "user": "mozart.padilla",
         "password": "U2FsdGVkX1+R7Uct2F4y968kv6HU3DniqYDSQf2yID8=",
         "status": 1
+    },
+
+    {
+        "name": "Jose Osvaldo",
+        "fLastName": "Muñoz",
+        "mLastName": "Olivares",
+        "phone": "5556789012",
+        "branch": 1,
+        "user": "jose.munoz",
+        "password": "U2FsdGVkX18mtSNmhVoxV1T/e0dozj+R+KW8UasjHks=" ,
+        "status": 1
+    },
+
+    {
+        "name": "Jael Neftali",
+        "fLastName": "Vargas",
+        "mLastName": "Grijalva",
+        "phone": "5512345678",
+        "branch": 1,
+        "user": "jael.vargas",
+        "password":"U2FsdGVkX1/z77L/vgGof/T9OlCkiCYdOsHiU9B8hTw=" ,
+        "status": 1
+    },
+    
+    {
+        "name": "Luis",
+        "fLastName": "Núñez",
+        "mLastName": "Morales",
+        "phone": "5590123456",
+        "branch": 1,
+        "user": "luis.nunez",
+        "password": "U2FsdGVkX1+kx8wz/9BjqIIN2P2RbB0XKmu5CaymDYk=" ,
+        "status": 1
+    },
+
+    {
+        "name": "Angela Gabriela",
+        "fLastName": "Silva",
+        "mLastName": "Cruz",
+        "phone": "5512345679",
+        "branch": 1,
+        "user": "angela.silva",
+        "password": "U2FsdGVkX1/aXC8mzINLTxJ/PSEul296NS2ECUsgUA8=" ,
+        "status": 1
+    },
+
+    {
+        "name": "Jorge Daniel",
+        "fLastName": "Mendoza",
+        "mLastName": "Vargas",
+        "phone": "5578901234",
+        "branch": 1,
+        "user": "jorge.mendoza",
+        "password": "U2FsdGVkX1/STrYfqpdIbwgkWpBKPgVXqKty3bwtPqo=" ,
+        "status": 1
+    },
+
+    {
+        "name": "Ingrid Melannie",
+        "fLastName": "Rivera",
+        "mLastName": "Ríos",
+        "phone": "5545678901",
+        "branch": 1,
+        "user": "ingrid.rivera",
+        "password": "U2FsdGVkX19bQ93j9QPh3pUJOOCEHF7uD1mcbVEPoPg=" ,
+        "status": 1
+    },
+
+    {
+        "name": "Isabel",
+        "fLastName": "Ortega",
+        "mLastName": "Jiménez",
+        "phone": "5589012345",
+        "branch": 1,
+        "user": "isabel.ortega",
+        "password": "U2FsdGVkX1+VAYdEWq0cqujhCFzuNp/EJEt6ZGJ+g9g=" ,
+        "status": 1
     }
+
 ]

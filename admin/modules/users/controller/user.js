@@ -85,16 +85,15 @@ function loadData() {
 }
 
 
-function updateTable() {
+function updateTable(listUsers = users) {
     let body = "";
-
-    users.forEach(function (elemento) {
+    console.log(listUsers)
+    listUsers.forEach(function (elemento) {
         let status = aStatus.find(item => item.id == elemento.status)?.status;
         let branch = branches.find(item => Number(branches.indexOf(item) + 1) == elemento.branch)?.name;
-
         let registro = '<tr>' +
             '<tr class="table-row">' +
-            '<td>' + Number(users.indexOf(elemento) + 1) + '</td>' +
+            '<td>' + Number(listUsers.indexOf(elemento) + 1) + '</td>' +
             '<td>' + elemento.name + '</td>' +
             '<td>' + elemento.fLastName + ' ' + elemento.mLastName + '</td>' +
             '<td>' + elemento.phone + '</td>' +
@@ -180,6 +179,7 @@ function actionForm() {
         case "create":
             let newUser = getFormElements(action);
             newUser.password = encryptPassword(newUser.password);
+            console.log(newUser)
             users.push(newUser);
             console.log(newUser, users);
             cleanForm();
@@ -405,8 +405,29 @@ function loadSelectsInpunt() {
     statusInput.innerHTML = body
 }
 
+function toggleSearchFields() {
+    let searchFields = document.getElementById('search-fields');
+    if (searchFields.style.display === 'none' || searchFields.style.display === '') {
+        searchFields.style.display = 'block';
+    } else {
+        searchFields.style.display = 'none';
+    }
+}
+function searchUser() {
+    let nameUser = document.getElementById('search-user').value.toLowerCase();
+    let filteredUser = users.filter(user => {
+        let nameMatch = user.name.toLowerCase().includes(nameUser);
+        return nameMatch;
+    });
+    loadBranch(filteredUser);
+}
+
+function loadBranch(filteredUser) {
+    updateTable(filteredUser)
+}
+
 // Cargar los datos y luego actualizar la tabla
 loadData().then(() => {
     loadSelectsInpunt()
-    updateTable();
+    updateTable(users);
 });
